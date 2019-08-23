@@ -1,0 +1,9 @@
+用法: ./devread  address  type  length
+address : 物理地址
+type :要访问的数据类型 : [b]yte, [h]alfword, [w]ord
+length :想要读取的长度
+
+用法: ./devwrite  address  type  value
+address : 物理地址
+type :要访问的数据类型 : [b]yte, [h]alfword, [w]ord
+value:想要写入的值
