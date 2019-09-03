@@ -172,6 +172,7 @@ if [ "$RECOVER" == 0 ];then
 	execute "cp ../images/*.dtb /mnt"
 	execute "cp ../images/MLO /mnt"
 	execute "cp ../images/u-boot.img /mnt"
+	execute "cp ./ramdisk/update_ramdisk.img /mnt"
 	execute "sync"
 	execute "umount /mnt"
 	echo "tar filesystem to ext4 partition"
