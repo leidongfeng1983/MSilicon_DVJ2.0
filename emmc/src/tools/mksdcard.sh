@@ -178,7 +178,7 @@ if [ "$RECOVER" == 0 ];then
 	execute "rm -rf /mnt/rootfs"
 	execute "mkdir /mnt/rootfs"
 	execute "mount ${device}2 /mnt/rootfs"
-	execute "tar -xvf /home/`cat user`/DJV2.0/rootfs.tar -C /mnt"
+	execute "cp /home/`cat user`/DJV2.0/rootfs.tar /mnt/rootfs/"
 	execute "sync"
 	execute "umount /mnt/rootfs"
 	echo "completed!"
