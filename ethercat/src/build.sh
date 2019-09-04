@@ -1,6 +1,7 @@
 #!/bin/bash
-#!/bin/bash
 make
 make install
-./tools/mkimg.sh
+cd .tools
+./mkimg.sh
+cd ..
 
