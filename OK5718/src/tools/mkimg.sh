@@ -101,3 +101,18 @@ fakeroot tar jcvf $SDK_PATH/images/OK57xx-linux-fs.tar.bz2  -C $DIR ./	\
 	--exclude=./usr/share/ti/video/TearOfSteel-Short-720x420.264		\
 	--exclude=./usr/share/ti/video/TearOfSteel-Short-720x420.m2v		\
 	--exclude=./usr/share/ti/video/TearOfSteel-Short-720x420.m4v	
+
+        rm -rf tmp
+	mkdir -p tmp/boot
+	mkdir -p tmp/rootfs
+	echo "copy images to fat32 partition"
+	cp ../images/logo.bmp tmp/boot
+	cp ../images/zImage tmp/boot
+	cp ../images/*.dtb tmp/boot
+	cp ../images/MLO tmp/boot
+	cp ../images/u-boot.img tmp/boot
+	echo "tar filesystem to ext4 partition"
+	cp ../images/OK57xx-linux-fs.tar.bz2 tmp/rootfs
+	tar -cvf /home/$USER/DJV2.0/djv.img tmp
+	rm -rf tmp
+	echo "completed!"

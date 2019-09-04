@@ -1,15 +1,17 @@
 #! /bin/bash
-         rm -rf /home/$USER/DJV2.0/tmp
-	mkdir -p /home/$USER/DJV2.0/tmp/boot
-	mkdir -p /home/$USER/DJV2.0/tmp/rootfs
+         rm -rf tmp
+	mkdir -p tmp/boot
+	mkdir -p tmp/rootfs
 	echo "copy images to fat32 partition"
-	cp ../images/logo.bmp /home/$USER/DJV2.0/tmp/boot
-	cp ../images/zImage /home/$USER/DJV2.0/tmp/boot
-	cp ../images/*.dtb /home/$USER/DJV2.0/tmp/boot
-	cp ../images/MLO /home/$USER/DJV2.0/tmp/boot
-	cp ../images/u-boot.img /home/$USER/DJV2.0/tmp/boot
+	cp ../images/logo.bmp tmp/boot
+	cp ../images/zImage tmp/boot
+	cp ../images/*.dtb tmp/boot
+	cp ../images/MLO tmp/boot
+	cp ../images/u-boot.img tmp/boot
 	echo "tar filesystem to ext4 partition"
-	cp /home/`cat user`/DJV2.0/rootfs.tar /home/$USER/DJV2.0/tmp/rootfs
-	tar -cvf /home/$USER/DJV2.0/canopen.img /home/$USER/DJV2.0/tmp
+        wget 127.0.0.1/dist/canopen/rootfs.tar 
+	mv rootfs.tar tmp/rootfs
+	tar -cvf /home/$USER/DJV2.0/canopen.img tmp
+        rm -rf tmp
 	echo "completed!"
 
