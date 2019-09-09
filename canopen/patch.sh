@@ -1,7 +1,7 @@
 #!/bin/bash
 cd ..
 rm rootfs.tar
-wget http://127.0.0.1/dist/canopen/rootfs.tar
+cp /usr/share/djv2.0/dist/canopen/rootfs.tar
 tar -jxvf OK5718-SDK-V1.0.tar.bz2
 cd MSilicon_DVJ2.0
 rm -rf ../OK5718-SDK-V1.0/OK57xx-linux-kernel/*
