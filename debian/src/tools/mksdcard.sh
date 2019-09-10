@@ -172,13 +172,26 @@ if [ "$RECOVER" == 0 ];then
 	execute "cp ../images/*.dtb /mnt"
 	execute "cp ../images/MLO /mnt"
 	execute "cp ../images/u-boot.img /mnt"
+	if [ `cat os` == "emmc" ]; then
+		cp ./ramdisk/update_ramdisk.img /mnt
+	fi
 	execute "sync"
 	execute "umount /mnt"
 	echo "tar filesystem to ext4 partition"
 	execute "rm -rf /mnt/rootfs"
 	execute "mkdir /mnt/rootfs"
 	execute "mount ${device}2 /mnt/rootfs"
-	execute "tar -xvf /home/`cat user`/DJV2.0/rootfs.tar -C /mnt"
+	if [ `cat os` == "debian" ]; then
+		execute "tar -xvf /usr/share/djv2.0/debian/rootfs.tar -C /mnt"
+	elif [ `cat os` == "emmc" ]; then
+		execute "cp /home/`cat user`/DJV2.0/rootfs.tar /mnt/rootfs/"
+	elif [ `cat os` == "ubuntu" ]; then
+		execute "tar -xvf /usr/share/djv2.0/ubuntu/rootfs.tar -C /mnt"
+	elif [ `cat os` == "ethercat" ]; then
+		execute "tar -xvf /usr/share/djv2.0/ethercat/rootfs.tar -C /mnt"
+	elif [ `cat os` == "canopen" ]; then
+		execute "tar -xvf /usr/share/djv2.0/canopen/rootfs.tar -C /mnt"
+	fi	
 	execute "sync"
 	execute "umount /mnt/rootfs"
 	echo "completed!"
